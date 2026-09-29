@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import { projects } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props;
+---
+
+<Base title={`${project.title} — Adam Zlamal`} description={project.tagline}>
+  <p><a href="/#projects">← All projects</a></p>
+  <h1>{project.title}</h1>
+  <p class="lead">{project.tagline}</p>
+  <ul class="tags">{project.tags.map((t) => <li>{t}</li>)}</ul>
+
+  <div class="actions">
+    {project.demo && <a class="btn primary" href={project.demo}>Open the app</a>}
+    {project.repo && <a class="btn" href={project.repo}>View on GitHub</a>}
+  </div>
+
+  <h2>What it does</h2>
+  {project.summary.map((s) => <p>{s}</p>)}
+
+  <h2>Highlights</h2>
+  <ul>{project.highlights.map((h) => <li>{h}</li>)}</ul>
+
+  {
+    project.slug === 'cyclesync' && (
+      <p class="note">
+        Sign-in uses Google OAuth and is unverified, so Google shows a warning screen. Only your own
+        calendar is touched, and nothing is sent to me. See the{' '}
+        <a href="/apps/cycle/privacy.html">privacy notes</a>.
+      </p>
+    )
+  }
+</Base>
+
+<style>
+  .actions { display: flex; gap: 12px; margin: 20px 0 0; flex-wrap: wrap; }
+  .btn {
+    padding: 8px 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--fg);
+    font-weight: 600;
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  ul { padding-left: 1.2em; }
+  li { margin: 4px 0; }
+  .note { margin-top: 32px; padding: 12px 16px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; color: var(--muted); font-size: 0.9rem; }
+</style>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CycleSync — Privacy Policy</title>
+  <meta name="description" content="How CycleSync accesses and handles your data.">
+  <meta name="theme-color" content="#e11d48">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .prose h2 { font-size: 1.05rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.5rem; color: #111827; }
+    .prose h3 { font-size: 0.9rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.35rem; color: #1f2937; }
+    .prose p, .prose li { font-size: 0.875rem; line-height: 1.65; color: #374151; }
+    .prose ul { list-style: disc; padding-left: 1.25rem; margin: 0.5rem 0; }
+    .prose li { margin: 0.35rem 0; }
+    .prose a { color: #e11d48; text-decoration: underline; }
+    .prose strong { color: #111827; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen antialiased">
+
+  <header class="bg-white border-b border-gray-100">
+    <div class="max-w-2xl mx-auto px-5 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center space-x-2">
+        <span class="text-xl">🌸</span>
+        <span class="text-base font-bold">CycleSync</span>
+      </a>
+      <a href="index.html" class="text-xs font-medium text-rose-600 hover:text-rose-700">← Back to app</a>
+    </div>
+  </header>
+
+  <main class="max-w-2xl mx-auto px-5 py-8">
+    <div class="prose">
+      <h1 class="text-2xl font-extrabold text-gray-900">Privacy Policy</h1>
+      <p class="text-xs text-gray-500 mt-1">Last updated: 28 August 2026</p>
+
+      <p class="mt-4">
+        CycleSync ("the app") is a personal menstrual-cycle tracker that projects your cycle
+        phases into your own Google Calendar. This policy explains exactly what the app
+        accesses, what it stores, and what it never does.
+      </p>
+
+      <h2>Who runs this app</h2>
+      <p>
+        CycleSync is operated by an individual developer, not a company. There is no backend
+        server, no database, and no user accounts. Questions:
+        <a href="mailto:ajf.zlamal@gmail.com">ajf.zlamal@gmail.com</a>.
+      </p>
+
+      <h2>What the app accesses</h2>
+      <h3>Your Google account identity</h3>
+      <p>
+        When you click "Sign in with Google", Google shares your name, email address, and
+        profile picture with the app so it can show which account is signed in. This
+        information stays in your browser for the duration of your session and is never
+        transmitted to the developer or any third party, and never stored anywhere.
+      </p>
+      <h3>Your Google Calendar</h3>
+      <p>
+        The app requests the <strong>Google Calendar</strong> scope
+        (<code>https://www.googleapis.com/auth/calendar</code>). It uses this access only to:
+      </p>
+      <ul>
+        <li>create a single dedicated secondary calendar named <strong>🌸 Cycle Tracker</strong> in your account (if it does not already exist);</li>
+        <li>add all-day "phase" events (Menstrual, Follicular, Ovulatory, Luteal) to that calendar for roughly one year ahead;</li>
+        <li>find and delete the app's own future events on that calendar when you recalculate your cycle or reset the app.</li>
+      </ul>
+      <p>
+        The app identifies its own events by a tag it writes into each event's description.
+        It does not read, modify, move, or delete any other calendar or any event it did not
+        create.
+      </p>
+
+      <h2>What the app stores</h2>
+      <ul>
+        <li>
+          <strong>Your cycle start date</strong> is saved in your browser's local storage
+          (<code>localStorage</code>) on the device you use. It is used only on your device to
+          calculate the current phase. It is never sent to the developer or anyone else.
+        </li>
+        <li>
+          A short-lived Google access token is held in memory during your session so the app
+          can talk to the Calendar API. It is discarded when you close the tab or sign out.
+        </li>
+      </ul>
+      <p>
+        The app keeps no history on any server because there is no server. Your phase events
+        live only in your own Google Calendar, under your control.
+      </p>
+
+      <h2>Third-party services</h2>
+      <ul>
+        <li>
+          <strong>Google</strong> — sign-in and the Calendar API. Your use of these is
+          governed by the
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.
+        </li>
+        <li>
+          <strong>Static web host</strong> (e.g. Cloudflare Pages or Netlify) — serves the
+          app's HTML/JS files. The host may record standard web-server request logs (such as
+          IP address and browser type). The app sends no data of its own to the host.
+        </li>
+        <li>
+          <strong>cdn.tailwindcss.com</strong> and <strong>Google Fonts</strong> — load
+          styling and font assets. These providers may see your IP address as part of a normal
+          asset request. No app data is shared with them.
+        </li>
+      </ul>
+
+      <h2>What the app never does</h2>
+      <ul>
+        <li>No analytics, tracking pixels, or advertising.</li>
+        <li>No selling, renting, or sharing of your data.</li>
+        <li>No profiling, and no use of your data to train any model.</li>
+        <li>No access to your email, contacts, files, or any Google data beyond the Calendar scope above.</li>
+      </ul>
+
+      <h2>Retention and deletion</h2>
+      <ul>
+        <li>
+          In the app, open <strong>Settings → "Clear Calendar &amp; Reset Data"</strong> to
+          delete the app's future events from your <strong>🌸 Cycle Tracker</strong> calendar
+          and clear the locally stored start date.
+        </li>
+        <li>
+          Revoke the app's access to your Google account at any time at
+          <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.
+        </li>
+        <li>
+          Clearing your browser's site data for this app removes the locally stored start
+          date immediately.
+        </li>
+      </ul>
+
+      <h2>Children</h2>
+      <p>
+        CycleSync is not directed to children under 16 and does not knowingly collect data
+        from them.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        If this policy changes, the "Last updated" date above will change. Material changes
+        will be noted on this page.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        <a href="mailto:ajf.zlamal@gmail.com">ajf.zlamal@gmail.com</a>
+      </p>
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-gray-200 text-center">
+      <a href="index.html" class="text-xs font-semibold text-rose-600 hover:text-rose-700">← Back to CycleSync</a>
+    </div>
+  </main>
+
+</body>
+</html>

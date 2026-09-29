@@ -1,0 +1,68 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Projects and tools by Adam Zlamal.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">Adam Zlamal</a>
+      <nav>
+        <a href="/#projects">Projects</a>
+        <a href="https://github.com/jahody">GitHub</a>
+      </nav>
+    </header>
+    <main><slot /></main>
+    <footer>© {new Date().getFullYear()} Adam Zlamal</footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #ffffff;
+    --fg: #16181d;
+    --muted: #5b6270;
+    --line: #e4e7ec;
+    --card: #f7f8fa;
+    --accent: #2b59d9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1115;
+      --fg: #e8eaee;
+      --muted: #9aa1ae;
+      --line: #262a33;
+      --card: #171a21;
+      --accent: #7b9cff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.6 system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+  header, main, footer { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+  header { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; padding-bottom: 24px; }
+  header nav { display: flex; gap: 20px; }
+  .brand { font-weight: 700; color: var(--fg); text-decoration: none; }
+  a { color: var(--accent); }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0.5em 0 0.3em; }
+  h2 { font-size: 1.25rem; margin: 2em 0 0.5em; }
+  .lead { color: var(--muted); font-size: 1.1rem; max-width: 60ch; }
+  footer { color: var(--muted); font-size: 0.85rem; padding-top: 48px; padding-bottom: 32px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 10px 0 0; list-style: none; }
+  .tags li { font-size: 0.75rem; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 1px 9px; }
+</style>

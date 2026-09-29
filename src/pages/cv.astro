@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+
+const interests =
+  'LLM-based coding agents for automating ML research workflows; multi-model consensus systems; automated literature review and taxonomy construction; agentic pipelines for experiment orchestration.';
+
+const education = [
+  {
+    title: 'PhD in Computer Science',
+    period: '2025 – present',
+    place: 'Faculty of Science, University of Ostrava · Czech Republic',
+    note: 'LLM-based agents for ML research automation',
+  },
+  {
+    title: 'PhD in Computer Science and Engineering',
+    period: '2020 – 2022',
+    place: 'Faculty of Informatics, Brno University of Technology · Czech Republic',
+    note: 'Not completed',
+  },
+  {
+    title: 'Architect Engineer (MEng)',
+    period: '2012 – 2014',
+    place: 'Faculty of Architecture, Brno University of Technology · Czech Republic',
+  },
+  {
+    title: 'Bachelor of Architecture',
+    period: '2007 – 2012',
+    place: 'Faculty of Architecture, Czech Technical University · Prague',
+  },
+];
+
+const experience = [
+  { title: 'Architect / BIM Manager', period: '04/2019 – 08/2025', place: 'SHAPE Architecture · Vancouver, Canada' },
+  { title: 'Data Scientist', period: '01/2019 – 03/2019', place: 'EasyMarkit · Vancouver, Canada' },
+  { title: 'Architect', period: '10/2016 – 05/2018', place: 'Grimwood Architecture · Vancouver, Canada' },
+  { title: 'Technical Designer', period: '11/2015 – 10/2016', place: '3D Services · Burnaby, Canada' },
+  { title: 'Intern Architect', period: '2011 – 2015', place: 'Atelier Zlamal · Brno / Archimat · Prague' },
+];
+
+const skills = [
+  { label: 'Programming', value: 'Python, JavaScript' },
+  { label: 'ML / AI', value: 'PyTorch, fast.ai, Anthropic SDK, OpenRouter, LLM agents, AsyncOpenAI' },
+  { label: 'Tools', value: 'Git, Docker, Semantic Scholar API, Revit, BIM, AutoCAD' },
+];
+---
+
+<Base title="Adam Zlamal — CV">
+  <h1>Ing. Arch. Adam Zlámal</h1>
+
+  <h2>Research Interests</h2>
+  <p>{interests}</p>
+
+  <h2>Education</h2>
+  <ul class="entries">
+    {
+      education.map((e) => (
+        <li>
+          <div class="head"><span class="title">{e.title}</span><span class="period">{e.period}</span></div>
+          <div class="place">{e.place}</div>
+          {e.note && <div class="note">{e.note}</div>}
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Professional Experience</h2>
+  <ul class="entries">
+    {
+      experience.map((e) => (
+        <li>
+          <div class="head"><span class="title">{e.title}</span><span class="period">{e.period}</span></div>
+          <div class="place">{e.place}</div>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Skills &amp; Training</h2>
+  <dl class="skills">
+    {skills.map((s) => (<><dt>{s.label}</dt><dd>{s.value}</dd></>))}
+  </dl>
+</Base>
+
+<style>
+  h1 { font-size: 1.8rem; }
+  h2:first-of-type { margin-top: 32px; }
+  .entries { list-style: none; padding: 0; margin: 0; }
+  .entries li { margin-bottom: 18px; }
+  .head { display: flex; justify-content: space-between; gap: 16px; }
+  .title { font-weight: 600; letter-spacing: -0.01em; }
+  .period { color: var(--faint); font-size: 0.88rem; white-space: nowrap; }
+  .place { color: var(--muted); font-size: 0.95rem; }
+  .note { color: var(--muted); font-size: 0.9rem; font-style: italic; }
+  .skills { display: grid; grid-template-columns: max-content 1fr; gap: 6px 24px; margin: 0; }
+  .skills dt { font-weight: 600; }
+  .skills dd { margin: 0; color: var(--muted); }
+</style>

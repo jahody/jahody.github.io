@@ -27,12 +27,12 @@ const { title, description = 'Projects and tools by Adam Zlamal.' } = Astro.prop
       <header>
         <a class="brand" href="/">Adam Zlamal</a>
         <nav>
-          <a href="/#projects">Projects</a>
+          <a href="/">Projects</a>
+          <a href="/cv/">CV</a>
           <a href="https://github.com/jahody">GitHub</a>
         </nav>
       </header>
       <main><slot /></main>
-      <footer>© {new Date().getFullYear()} Adam Zlamal</footer>
     </div>
   </body>
 </html>

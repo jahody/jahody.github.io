@@ -7,50 +7,60 @@ import { projects } from '../data/projects';
   <section>
     <h1>Tools I've built.</h1>
     <p class="lead">
-      A collection of projects around LLMs, research tooling, and small apps. Some run right here in
-      your browser; others are documented as showcases.
+      Small apps and research tooling around LLMs. Some run right here in your browser; others are
+      documented as showcases.
     </p>
   </section>
 
   <section id="projects">
     <h2>Projects</h2>
-    <div class="grid">
+    <ul class="list">
       {
         projects.map((p) => (
-          <a class="card" href={`/projects/${p.slug}/`}>
-            <div class="top">
-              <h3>{p.title}</h3>
-              <span class={`badge ${p.status}`}>{p.status === 'live' ? 'Live demo' : 'Showcase'}</span>
-            </div>
-            <p>{p.tagline}</p>
-            <ul class="tags">{p.tags.map((t) => <li>{t}</li>)}</ul>
-          </a>
+          <li>
+            <a class="row" href={`/projects/${p.slug}/`}>
+              <div class="text">
+                <div class="name">
+                  {p.title}
+                  {p.status === 'live' && <span class="live">Live</span>}
+                </div>
+                <p>{p.tagline}</p>
+                <ul class="tags">{p.tags.map((t) => <li>{t}</li>)}</ul>
+              </div>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
         ))
       }
-    </div>
+    </ul>
   </section>
 </Base>
 
 <style>
-  .grid { display: grid; gap: 16px; }
-  .card {
-    display: block;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 18px 20px;
+  .list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+  .list > li { border-bottom: 1px solid var(--line); }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 22px 4px;
     color: var(--fg);
     text-decoration: none;
-    transition: border-color 0.15s;
+    border-radius: var(--radius);
+    transition: background 0.15s, padding 0.15s;
   }
-  .card:hover { border-color: var(--accent); }
-  .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-  h3 { margin: 0; font-size: 1.15rem; }
-  .card p { margin: 6px 0 0; color: var(--muted); }
-  .badge { font-size: 0.72rem; font-weight: 600; padding: 2px 8px; border-radius: 6px; white-space: nowrap; }
-  .badge.live { background: #d8f3e0; color: #14532d; }
-  .badge.showcase { background: var(--line); color: var(--muted); }
-  @media (prefers-color-scheme: dark) {
-    .badge.live { background: #14352a; color: #7ee2a8; }
+  .row:hover { background: #fafafb; padding-left: 12px; padding-right: 12px; }
+  .name { font-weight: 600; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
+  .row p { color: var(--muted); margin: 4px 0 0; font-size: 0.95rem; }
+  .live {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: #0f7a3d;
+    background: #e7f6ed;
+    border-radius: 999px;
+    padding: 1px 8px;
   }
+  .arrow { color: var(--faint); transition: transform 0.15s, color 0.15s; }
+  .row:hover .arrow { transform: translateX(3px); color: var(--fg); }
 </style>

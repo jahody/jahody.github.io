@@ -13,10 +13,24 @@ const { project } = Astro.props;
 <Base title={`${project.title} — Adam Zlamal`} description={project.tagline}>
   <a class="back mono" href="/#projects">← Projects</a>
   <div class="meta mono">{project.category}</div>
-  <Figure slug={project.slug} stats={project.stats} live={project.status === 'live'} size="page" />
+  <Figure
+    slug={project.slug}
+    stats={project.stats}
+    badge={project.status === 'live' ? 'live' : project.paper ? 'paper' : undefined}
+    size="page"
+  />
 
   <h1>{project.title}</h1>
   <p class="lead">{project.tagline}</p>
+
+  {
+    project.paper && (
+      <p class="cite">
+        <span class="mono">Paper · {project.paper.venue}</span>
+        “{project.paper.title}”
+      </p>
+    )
+  }
 
   {
     (project.demo || project.repo) && (
@@ -51,6 +65,8 @@ const { project } = Astro.props;
   .back:hover { color: var(--fg); }
   .meta { margin-bottom: 12px; font-size: 0.66rem; }
   h1 { margin-top: 36px; }
+  .cite { margin: 20px 0 0; padding: 12px 16px; border: 1px dashed var(--dash); font-size: 0.95rem; max-width: 60ch; }
+  .cite .mono { display: block; margin-bottom: 4px; color: var(--fg); font-size: 0.66rem; }
   .actions { display: flex; gap: 10px; margin: 28px 0 0; flex-wrap: wrap; }
   .btn {
     padding: 8px 20px;

@@ -12,7 +12,7 @@ import { projects } from '../data/projects';
           <li>
             <a class="card" href={`/projects/${p.slug}/`}>
               <div class="meta mono">{p.category}</div>
-              <Figure slug={p.slug} stats={p.stats} live={p.status === 'live'} />
+              <Figure slug={p.slug} stats={p.stats} badge={p.status === 'live' ? 'live' : p.paper ? 'paper' : undefined} />
               <h3>{p.title}</h3>
               <div class="foot">
                 <p>{p.tagline}</p>

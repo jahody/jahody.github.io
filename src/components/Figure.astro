@@ -4,10 +4,11 @@
 interface Props {
   slug: string;
   stats: [string, string];
-  live?: boolean;
+  /** Top-right badge: a hosted demo ('live') or published work ('paper'). */
+  badge?: 'live' | 'paper';
   size?: 'card' | 'page';
 }
-const { slug, stats, live = false, size = 'card' } = Astro.props;
+const { slug, stats, badge, size = 'card' } = Astro.props;
 
 const r2 = (n: number) => Math.round(n * 100) / 100;
 // Deterministic pseudo-random in [0, 1) so every build draws the same figure.
@@ -233,7 +234,8 @@ const contrib = Array.from({ length: 7 * 24 }, (_, i) => {
       )
     }
   </svg>
-  {live && <span class="corner tr">Live <i></i></span>}
+  {badge === 'live' && <span class="corner tr">Live <i></i></span>}
+  {badge === 'paper' && <span class="corner tr paper">Paper <i></i></span>}
   <span class="corner bl">{stats[0]}</span>
   <span class="corner br">{stats[1]}</span>
 </div>
@@ -262,6 +264,8 @@ const contrib = Array.from({ length: 7 * 24 }, (_, i) => {
   .br { right: 10px; bottom: 9px; }
   .tr { right: 10px; top: 9px; display: flex; align-items: center; gap: 5px; }
   .tr i { width: 6px; height: 6px; border-radius: 50%; background: var(--live); }
+  .tr.paper { color: var(--fg); }
+  .tr.paper i { border-radius: 0; background: var(--fg); }
 
   .s { fill: none; stroke: var(--fg); stroke-width: 1; }
   .f { fill: var(--fg); }

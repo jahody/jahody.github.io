@@ -31,8 +31,11 @@ const isCv = path.startsWith('/cv');
     <header class="site">
       <div class="bar">
         <a class="brand" href="/">
-          <svg viewBox="0 0 14 14" aria-hidden="true">
-            {[0, 1, 2].flatMap((i) => [0, 1, 2].map((j) => <circle cx={2 + i * 5} cy={2 + j * 5} r={i === 1 && j === 1 ? 1.9 : 1.4} />))}
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <rect x="0" y="0" width="7" height="7" />
+            <rect x="9" y="9" width="7" height="7" />
+            <rect class="o" x="9.4" y="0.4" width="6.2" height="6.2" />
+            <rect class="o" x="0.4" y="9.4" width="6.2" height="6.2" />
           </svg>
           Adam Zlamal
         </a>
@@ -94,7 +97,9 @@ const isCv = path.startsWith('/cv');
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
-  .brand svg { width: 15px; height: 15px; fill: var(--fg); }
+  /* The mark (same as public/favicon.svg): a 2×2 grid with its diagonal filled. */
+  .brand svg { width: 16px; height: 16px; fill: var(--fg); }
+  .brand svg .o { fill: none; stroke: var(--fg); stroke-width: 0.8; }
   .bar nav { display: flex; gap: 36px; }
   .bar nav a { color: var(--fg); font-size: 0.9rem; text-decoration: none; opacity: 0.75; transition: opacity 0.15s; }
   .bar nav a:hover, .bar nav a[aria-current='page'] { opacity: 1; }

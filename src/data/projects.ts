@@ -63,15 +63,16 @@ export const projects: Project[] = [
     tagline: 'Classifying papers by multi-LLM consensus voting.',
     category: 'Classification',
     stats: ['STAGES 5', 'METRICS 8'],
-    tags: ['Python', 'LLMs', 'Taxonomies', 'Evaluation'],
-    status: 'showcase',
+    tags: ['Python', 'TypeScript', 'LLMs', 'Taxonomies'],
+    status: 'live',
+    demo: '/surveymaster/',
     summary: [
-      'Several LLMs vote, weighted by confidence, to place papers in hierarchical taxonomies more reliably than any single model. A refinement loop fixes dead and overloaded leaves.',
+      'Several LLMs vote, weighted by confidence, to place papers in hierarchical taxonomies more reliably than any single model. A refinement loop fixes dead and overloaded leaves. The whole pipeline also runs in the browser: open a finished run, or bring an OpenRouter key and start your own.',
     ],
     highlights: [
       'Five stages: fetch, taxonomize, classify, evaluate, evolve.',
       'Human review of proposed taxonomies.',
-      'Ground-truth metrics: top-1 accuracy, top-k recall, ECE, Brier score.',
+      'The browser version reproduces the Python consensus and metrics exactly.',
     ],
   },
   {

@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import App from '../components/surveymaster/App';
+---
+
+<Base title="SurveyMaster — Adam Zlamal" description="Classify research papers against taxonomies by multi-model LLM consensus, in your browser." wide>
+  <a class="back mono" href="/projects/surveymaster/">← SurveyMaster</a>
+  <h1>SurveyMaster</h1>
+  <p class="lead">
+    Find papers, design taxonomies with several LLMs, classify every paper by consensus vote, check how well the models agree, and map how the work
+    evolved. Everything runs in your browser.
+  </p>
+  <div class="app">
+    <App client:only="preact" />
+    <noscript><p>SurveyMaster needs JavaScript.</p></noscript>
+  </div>
+</Base>
+
+<style>
+  .back { display: inline-block; margin-bottom: 20px; text-decoration: none; }
+  .back:hover { color: var(--fg); }
+  .lead { max-width: 68ch; }
+  .app { margin-top: 32px; }
+</style>

@@ -1,0 +1,35 @@
+[
+  {
+    "file": "efficient-reasoning-LLM.json",
+    "topic": "efficient reasoning LLM",
+    "papers": 77,
+    "taxonomies": 1,
+    "models": [
+      "deepseek/deepseek-v3.2",
+      "google/gemini-3.1-flash-lite-preview",
+      "openai/gpt-5-nano"
+    ]
+  },
+  {
+    "file": "implicit-reasoning-LLM.json",
+    "topic": "implicit reasoning LLM",
+    "papers": 42,
+    "taxonomies": 1,
+    "models": [
+      "deepseek/deepseek-v3.2",
+      "google/gemini-3.1-flash-lite-preview",
+      "openai/gpt-5-nano"
+    ]
+  },
+  {
+    "file": "latent-reasoning.json",
+    "topic": "latent reasoning",
+    "papers": 89,
+    "taxonomies": 1,
+    "models": [
+      "deepseek/deepseek-v3.2",
+      "google/gemini-3.1-flash-lite-preview",
+      "openai/gpt-5-nano"
+    ]
+  }
+]

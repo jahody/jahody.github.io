@@ -63,4 +63,41 @@ export const projects: Project[] = [
       'Test suite covers failover, streaming, scoring, normalization, and MCP passthrough.',
     ],
   },
+  {
+    slug: 'llm-clustering-benchmark',
+    title: 'LLM Clustering Benchmark',
+    tagline: 'Do LLM-guided clustering methods beat classical baselines? A controlled, cost-aware benchmark.',
+    tags: ['Python', 'LLMs', 'Clustering', 'Paper'],
+    status: 'showcase',
+    repo: 'https://github.com/jahody/llm-clustering-benchmark',
+    summary: [
+      'Five LLM-guided clustering methods (Few-Shot Clustering, LSCK-HC, k-LLMmeans, SPILL, Cequel) run head-to-head against k-means, Ward agglomerative and spectral clustering on Banking77, CLINC150 and MASSIVE, with three embedding models. All methods share one LLM and the same cached embeddings, so differences come from the method, not the encoder.',
+      'Most of the reported advantage of LLM clustering comes from comparing against weak k-means. Against the best classical method, only 1 of 45 method × encoder × dataset cells wins by more than its seed variance. On strong encoders, Ward matches or beats every LLM method at zero cost, while the LLM methods cost 100–1000× more in time and money.',
+    ],
+    highlights: [
+      'Paper: "Do LLM Clustering Methods Outperform Classical Baselines? A Controlled, Cost-Aware Benchmark", ITAT 2026.',
+      'Each method\'s core loop and prompts are reimplemented from its original repo to run under the shared backbone.',
+      'Every run records accuracy (ACC, NMI, ARI) and cost (tokens, USD, wall-clock time).',
+      'Precomputed embeddings ship with the code, so the grid reproduces without re-embedding.',
+    ],
+  },
+  {
+    slug: 'speedcam',
+    title: 'SpeedCam',
+    tagline: 'Measure the speed of passing cars with a phone camera, right in the browser.',
+    tags: ['JavaScript', 'TensorFlow.js', 'Computer vision', 'Device sensors'],
+    status: 'live',
+    demo: 'https://jahody.github.io/speedcam/',
+    repo: 'https://github.com/jahody/speedcam',
+    summary: [
+      'Point your phone at the road. SpeedCam detects vehicles with COCO-SSD, tracks them across frames, and turns their motion into km/h. Each measurement goes into a speed log with a photo.',
+      'Speed comes from the best estimator available: a tap calibration over a known distance, a size-free projection onto the road plane from the phone\'s orientation sensors and camera height, or a fallback from typical vehicle dimensions.',
+    ],
+    highlights: [
+      'A single HTML file with no backend. Video is processed on the device, and the log stays in the browser.',
+      'The camera\'s field of view self-tunes from passing cars and is remembered per device.',
+      'Road name and speed limit come from GPS via OpenStreetMap (Mapy.com optional), with an alert above a set threshold.',
+      'Calibration wizard: tap two points on the road and pick their distance.',
+    ],
+  },
 ];

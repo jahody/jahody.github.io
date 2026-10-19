@@ -2,6 +2,10 @@ export interface Project {
   slug: string;
   title: string;
   tagline: string;
+  /** Short label shown above the project's figure, e.g. 'LLM routing'. */
+  category: string;
+  /** Two micro-labels printed in the figure frame's bottom corners. */
+  stats: [string, string];
   tags: string[];
   status: 'live' | 'showcase';
   demo?: string;
@@ -15,6 +19,8 @@ export const projects: Project[] = [
     slug: 'cyclesync',
     title: 'CycleSync',
     tagline: 'Menstrual cycle phases projected into Google Calendar, with one-tap recalibration.',
+    category: 'Calendar PWA',
+    stats: ['CYCLE 28 D', 'EVENTS 56'],
     tags: ['PWA', 'JavaScript', 'Google Calendar API', 'OAuth'],
     status: 'live',
     demo: '/apps/cycle/',
@@ -33,6 +39,8 @@ export const projects: Project[] = [
     slug: 'surveymaster',
     title: 'SurveyMaster',
     tagline: 'Classify research papers against hierarchical taxonomies using multi-LLM consensus voting.',
+    category: 'Classification',
+    stats: ['STAGES 5', 'METRICS 8'],
     tags: ['Python', 'LLMs', 'Taxonomies', 'Evaluation'],
     status: 'showcase',
     summary: [
@@ -50,6 +58,8 @@ export const projects: Project[] = [
     slug: 'agentswarm',
     title: 'agentSwarm',
     tagline: 'A pool of free-tier LLM providers, routed by capability tier and remaining quota.',
+    category: 'LLM routing',
+    stats: ['PROVIDERS 7', 'MODELS 40+'],
     tags: ['Python', 'LLM routing', 'MCP', 'SQLite'],
     status: 'showcase',
     summary: [
@@ -67,6 +77,8 @@ export const projects: Project[] = [
     slug: 'llm-clustering-benchmark',
     title: 'LLM Clustering Benchmark',
     tagline: 'Do LLM-guided clustering methods beat classical baselines? A controlled, cost-aware benchmark.',
+    category: 'Benchmark',
+    stats: ['CELLS 45', 'SIG. WINS 1'],
     tags: ['Python', 'LLMs', 'Clustering', 'Paper'],
     status: 'showcase',
     repo: 'https://github.com/jahody/llm-clustering-benchmark',
@@ -85,6 +97,8 @@ export const projects: Project[] = [
     slug: 'speedcam',
     title: 'SpeedCam',
     tagline: 'Measure the speed of passing cars with a phone camera, right in the browser.',
+    category: 'Computer vision',
+    stats: ['COCO-SSD', 'ON-DEVICE'],
     tags: ['JavaScript', 'TensorFlow.js', 'Computer vision', 'Device sensors'],
     status: 'live',
     demo: 'https://jahody.github.io/speedcam/',

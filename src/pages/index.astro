@@ -1,24 +1,23 @@
 ---
 import Base from '../layouts/Base.astro';
+import Figure from '../components/Figure.astro';
 import { projects } from '../data/projects';
 ---
 
-<Base title="Adam Zlamal — Projects">
+<Base title="Adam Zlamal — Projects" wide>
   <section id="projects">
-    <ul class="list">
+    <ul class="grid">
       {
         projects.map((p) => (
           <li>
-            <a class="row" href={`/projects/${p.slug}/`}>
-              <div class="text">
-                <div class="name">
-                  {p.title}
-                  {p.status === 'live' && <span class="live">Live</span>}
-                </div>
+            <a class="card" href={`/projects/${p.slug}/`}>
+              <div class="meta mono">{p.category}</div>
+              <Figure slug={p.slug} stats={p.stats} live={p.status === 'live'} />
+              <h3>{p.title}</h3>
+              <div class="foot">
                 <p>{p.tagline}</p>
-                <ul class="tags">{p.tags.map((t) => <li>{t}</li>)}</ul>
+                <span class="arrow" aria-hidden="true">↗</span>
               </div>
-              <span class="arrow" aria-hidden="true">→</span>
             </a>
           </li>
         ))
@@ -28,30 +27,39 @@ import { projects } from '../data/projects';
 </Base>
 
 <style>
-  .list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
-  .list > li { border-bottom: 1px solid var(--line); }
-  .row {
+  /* Outer frame on the grid, inner lines as cell shadows, so a short last row leaves a clean empty cell. */
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .grid > li { box-shadow: 1px 0 0 var(--line), 0 1px 0 var(--line); }
+  .card {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 24px;
-    padding: 22px 4px;
+    flex-direction: column;
+    height: 100%;
+    padding: 18px 22px 24px;
     color: var(--fg);
     text-decoration: none;
-    border-radius: var(--radius);
-    transition: background 0.15s, padding 0.15s;
+    transition: background 0.2s;
   }
-  .row:hover { background: #fafafb; padding-left: 12px; padding-right: 12px; }
-  .name { font-weight: 600; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
-  .row p { color: var(--muted); margin: 4px 0 0; font-size: 0.95rem; }
-  .live {
-    font-size: 0.68rem;
-    font-weight: 500;
-    color: #0f7a3d;
-    background: #e7f6ed;
-    border-radius: 999px;
-    padding: 1px 8px;
+  .card:hover { background: var(--soft); }
+  .meta { margin-bottom: 14px; font-size: 0.66rem; }
+  h3 { font-size: 1.22rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.3; margin: 22px 0 8px; }
+  .foot { flex: 1; display: flex; justify-content: space-between; gap: 20px; }
+  .foot p { color: var(--muted); font-size: 0.92rem; line-height: 1.6; margin: 0; }
+  .arrow { align-self: flex-end; font-size: 0.95rem; line-height: 1.6; transition: transform 0.2s; }
+  .card:hover .arrow { transform: translate(2px, -2px); }
+
+  @media (max-width: 960px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
   }
-  .arrow { color: var(--faint); transition: transform 0.15s, color 0.15s; }
-  .row:hover .arrow { transform: translateX(3px); color: var(--fg); }
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; }
+    .card { padding: 16px 16px 22px; }
+  }
 </style>

@@ -66,6 +66,7 @@ export const projects: Project[] = [
     tags: ['Python', 'TypeScript', 'LLMs', 'Taxonomies'],
     status: 'live',
     demo: '/surveymaster/',
+    repo: 'https://github.com/jahody/surveymaster',
     summary: [
       'Several LLMs vote, weighted by confidence, to place papers in hierarchical taxonomies more reliably than any single model. A refinement loop fixes dead and overloaded leaves. The whole pipeline also runs in the browser: open a finished run, or bring an OpenRouter key and start your own.',
     ],

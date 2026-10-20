@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://api.cerebras.ai https://api.groq.com https://generativelanguage.googleapis.com https://openrouter.ai https://router.huggingface.co; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Chat with free-tier LLMs from five providers using your own API keys, routed by tier with automatic failover, or compare models side by side.">
+<title>agentSwarm</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<header id="topbar">
+  <a class="brand" href="/projects/agentswarm/" title="About this project">
+    <svg viewBox="0 0 16 16" aria-hidden="true">
+      <rect x="0" y="0" width="7" height="7" />
+      <rect x="9" y="9" width="7" height="7" />
+      <rect class="o" x="9.4" y="0.4" width="6.2" height="6.2" />
+      <rect class="o" x="0.4" y="9.4" width="6.2" height="6.2" />
+    </svg>
+    agentSwarm
+  </a>
+  <span class="tagline">free-tier LLM router</span>
+  <button id="toggle-sidebar" class="ghost" aria-controls="sidebar" aria-expanded="false">Keys &amp; status</button>
+</header>
+
+<div id="layout">
+  <aside id="sidebar">
+    <section class="panel">
+      <h2>API keys</h2>
+      <p class="hint">Keys stay in this browser and are sent only to the provider they belong to. All five providers offer free tiers; limits vary.</p>
+      <div id="key-list"></div>
+      <label class="check"><input type="checkbox" id="remember"> Remember keys on this device</label>
+      <p class="hint small">Off: keys are forgotten when you close the tab. On: they stay in this browser's local storage.</p>
+      <div class="row">
+        <button id="save-keys" class="primary">Save keys</button>
+        <button id="forget-keys">Forget keys</button>
+      </div>
+      <p id="keys-msg" class="msg" role="status"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Status</h2>
+      <div class="row">
+        <button id="refresh-status">Refresh</button>
+        <button id="discover" title="Check each provider's live model list; models it no longer lists are disabled">Discover models</button>
+        <button id="reset-state" title="Clear cooldowns, latency history and disabled models">Reset</button>
+      </div>
+      <div id="discover-report" class="hint small"></div>
+      <div id="status-list"></div>
+      <p class="hint small">Two providers from the Python version, SambaNova and NVIDIA NIM, block browser requests and are not available here.</p>
+    </section>
+  </aside>
+
+  <main id="main">
+    <div class="tabs" role="tablist">
+      <button role="tab" id="tab-chat" aria-controls="panel-chat" aria-selected="true">Chat</button>
+      <button role="tab" id="tab-compare" aria-controls="panel-compare" aria-selected="false">Compare</button>
+    </div>
+
+    <section id="panel-chat" role="tabpanel" aria-labelledby="tab-chat">
+      <div class="toolbar">
+        <label>Tier
+          <select id="tier">
+            <option value="T2" selected>T2 general</option>
+            <option value="T1">T1 reasoning</option>
+            <option value="T3">T3 fast</option>
+          </select>
+        </label>
+        <label>Max tokens
+          <input id="max-tokens" type="number" value="1024" min="16" max="8192" step="16">
+        </label>
+        <label class="grow">System
+          <input id="system-prompt" type="text" placeholder="optional system prompt">
+        </label>
+        <button id="clear-chat">Clear</button>
+      </div>
+
+      <div id="messages" aria-live="polite">
+        <div class="empty-state">
+          <p>Add at least one API key, then ask anything.</p>
+          <p>Each message goes to the best available model for the tier. If a provider is rate-limited or down, the next one takes over.</p>
+        </div>
+      </div>
+
+      <form id="composer">
+        <textarea id="prompt" rows="2" placeholder="Message (Enter to send, Shift+Enter for a new line)"></textarea>
+        <button type="submit" id="send" class="primary">Send</button>
+      </form>
+    </section>
+
+    <section id="panel-compare" role="tabpanel" aria-labelledby="tab-compare" hidden>
+      <div class="compare-setup">
+        <div class="picker-head">
+          <span class="label">Models <span id="pick-count" class="badge">0/6</span></span>
+          <span class="quick">
+            <button data-quick="T1">T1</button>
+            <button data-quick="T2">T2</button>
+            <button data-quick="T3">T3</button>
+            <button data-quick="none">None</button>
+          </span>
+        </div>
+        <div id="model-picker"></div>
+        <form id="compare-form">
+          <textarea id="compare-prompt" rows="3" placeholder="One prompt, sent to every selected model at once"></textarea>
+          <div class="row">
+            <label>Max tokens
+              <input id="compare-max-tokens" type="number" value="512" min="16" max="8192" step="16">
+            </label>
+            <button type="submit" id="compare-run" class="primary">Run</button>
+          </div>
+        </form>
+      </div>
+      <div id="compare-results"></div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

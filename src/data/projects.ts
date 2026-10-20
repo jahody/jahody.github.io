@@ -81,15 +81,16 @@ export const projects: Project[] = [
     tagline: 'Free-tier LLMs, routed by tier and remaining quota.',
     category: 'LLM routing',
     stats: ['PROVIDERS 7', 'MODELS 40+'],
-    tags: ['Python', 'LLM routing', 'MCP', 'SQLite'],
-    status: 'showcase',
+    tags: ['Python', 'JavaScript', 'LLM routing', 'MCP'],
+    status: 'live',
+    demo: '/apps/agentswarm/',
     summary: [
-      'An OpenAI-compatible router over 7 free-tier providers and 40+ models. It picks by capability tier and quota, fails over when one runs out, and runs as an MCP server for Claude Code.',
+      'An OpenAI-compatible router over 7 free-tier providers and 40+ models. It picks by capability tier and quota, fails over when one runs out, and runs as an MCP server for Claude Code. A browser version covers the 5 providers that accept calls from a web page.',
     ],
     highlights: [
       'Three tiers: reasoning, general, fast.',
       'Quota tracking, cooldowns and automatic model discovery.',
-      'Tests cover failover, streaming and MCP passthrough.',
+      'In the browser: bring your own keys, then chat or compare models side by side.',
     ],
   },
   {

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cyclesync-v2';
+const CACHE_NAME = 'cyclesync-v3';
 const ASSETS = ['./', 'index.html', 'privacy.html', 'manifest.json'];
 
 self.addEventListener('install', e => {

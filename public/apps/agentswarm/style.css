@@ -20,6 +20,8 @@
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 
+/* Same scrollbar reservation as the site, so the content column doesn't shift between pages. */
+html { scrollbar-gutter: stable; }
 html, body { height: 100%; }
 body {
   margin: 0;
@@ -65,12 +67,14 @@ input[type="text"], input[type="password"], input[type="number"], select, textar
 
 /* ---------- top bar ---------- */
 
+/* Top bar and layout share the site's content column (1072px, 24px gutters; see main.wide in src/layouts/Base.astro). */
+#topbar, #layout { width: min(1072px, 100% - 48px); margin: 0 auto; }
+
 #topbar {
   display: flex;
   align-items: center;
   gap: 12px;
-  height: 52px;
-  padding: 0 16px;
+  height: 64px;
   border-bottom: 1px solid var(--line);
   flex: none;
 }
@@ -89,7 +93,7 @@ input[type="text"], input[type="password"], input[type="number"], select, textar
 .tagline { font: 400 0.7rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 #toggle-sidebar { margin-left: auto; display: none; }
 
-#layout { flex: 1; display: flex; min-height: 0; }
+#layout { flex: 1; display: flex; min-height: 0; border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
 
 /* ---------- sidebar ---------- */
 
@@ -278,9 +282,10 @@ input[type="number"] { width: 84px; }
 /* ---------- narrow screens ---------- */
 
 @media (max-width: 767px) {
+  #topbar { width: calc(100% - 32px); height: 56px; }
+  #layout { position: relative; width: 100%; border: 0; }
   #toggle-sidebar { display: inline-block; border-color: var(--line); }
   .tagline { display: none; }
-  #layout { position: relative; }
   #sidebar {
     position: absolute;
     inset: 0 0 auto 0;

@@ -2,10 +2,8 @@
 interface Props {
   title: string;
   description?: string;
-  /** Full-width content (the project grid) instead of the reading column. */
-  wide?: boolean;
 }
-const { title, description = 'Projects and tools by Adam Zlamal.', wide = false } = Astro.props;
+const { title, description = 'Projects and tools by Adam Zlamal.' } = Astro.props;
 const path = Astro.url.pathname;
 const isProjects = path === '/' || path.startsWith('/projects');
 const isCv = path.startsWith('/cv');
@@ -46,7 +44,7 @@ const isCv = path.startsWith('/cv');
         <a class="cta" href="https://github.com/jahody">GitHub</a>
       </div>
     </header>
-    <main class={wide ? 'wide' : 'narrow'}><slot /></main>
+    <main><slot /></main>
   </body>
 </html>
 
@@ -75,7 +73,7 @@ const isCv = path.startsWith('/cv');
   }
 
   header.site { padding: 0 24px; background: var(--bg); position: sticky; top: 0; z-index: 10; }
-  /* Same content width as main.wide, so the rule under the header lines up with the grid and CV rows. */
+  /* Same content width as main (and the static apps in public/apps/), so the rule under the header lines up with every page. */
   .bar {
     max-width: 1072px;
     margin: 0 auto;
@@ -116,8 +114,7 @@ const isCv = path.startsWith('/cv');
   }
   .cta:hover { background: #2a2c31; }
 
-  main.narrow { max-width: 728px; margin: 0 auto; padding: 64px 24px 72px; }
-  main.wide { max-width: 1120px; margin: 0 auto; padding: 40px 24px 72px; }
+  main { max-width: 1120px; margin: 0 auto; padding: 40px 24px 72px; }
 
   a { color: var(--fg); text-underline-offset: 3px; }
   h1 { font-size: 2.4rem; line-height: 1.12; letter-spacing: -0.035em; font-weight: 500; margin: 0 0 16px; }
@@ -147,8 +144,7 @@ const isCv = path.startsWith('/cv');
     .bar { grid-template-columns: auto 1fr auto; gap: 16px; height: 56px; }
     .bar nav { justify-self: end; gap: 18px; }
     .cta { padding: 6px 14px; font-size: 0.82rem; }
-    main.narrow { padding: 40px 16px 56px; }
-    main.wide { padding: 24px 16px 56px; }
+    main { padding: 24px 16px 56px; }
     h1 { font-size: 1.9rem; }
   }
 </style>

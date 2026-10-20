@@ -1,4 +1,4 @@
-/* agentSwarm web app. Tokens follow the site (src/layouts/Base.astro). */
+/* agentSwarm web app. Tokens follow the site (src/layouts/Base.astro), which is light-only. */
 
 :root {
   --bg: #ffffff;
@@ -14,23 +14,7 @@
   --user-fg: #ffffff;
   --radius: 10px;
   --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0e0f11;
-    --fg: #ececee;
-    --muted: #a0a4ab;
-    --faint: #6b6f76;
-    --line: #26282d;
-    --soft: #16171a;
-    --live: #3ecf8e;
-    --warn: #f0b04a;
-    --err: #ff7b72;
-    --user-bg: #ececee;
-    --user-fg: #0e0f11;
-  }
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }

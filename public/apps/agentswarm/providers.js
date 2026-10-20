@@ -5,9 +5,8 @@
 // CORS headers are listed: SambaNova and NVIDIA NIM block browser calls, so
 // they stay in the Python router only.
 //
-// Model ids were re-checked against each provider's live /models on 2026-10-19,
-// when most of the May 2026 yaml ids had been retired. Tiers for ids that are
-// new since then are provisional (no capsniff run yet).
+// In sync with the yaml's 2026-10-20 catalog refresh (ids probed against each
+// provider's live /models). Tiers for ids added then are provisional there too.
 //
 // T1 = reasoning/quality-first, T2 = general/quota-first, T3 = fast (latency p50).
 
